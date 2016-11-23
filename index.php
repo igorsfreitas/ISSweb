@@ -84,4 +84,30 @@ function cancelaNota($loginAppp, $passwordApp, $numeroNota, $motivo)
 
 }
 
+echo listarPrefeituras();
+function listarPrefeituras()
+{
+
+		$login = 'agillApp01';
+		$password = 'p@SsApp00#';
+		
+		//ESTA URL NÃO ESTÁ DISPONÍVEL
+		$loginUrl = 'http://www.agill.com.br/app_servicos/ws_prefeituras.php';
+
+		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_URL, $loginUrl);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, 'login='.$login.'&senha='.$password);
+
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+		$content = curl_exec($ch);
+
+		curl_close($ch);
+
+		return $content;
+
+}
+
 ?>
