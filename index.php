@@ -30,7 +30,7 @@ function loginAplicacao($loginAppp, $passwordApp)
 }
 
 $periodo = '2016-02';
-
+//WEB SERVICE NÃO DISPONÍVEL
 function listarNotasGeradas($loginAppp, $passwordApp, $periodo)
 {
 
@@ -55,4 +55,33 @@ function listarNotasGeradas($loginAppp, $passwordApp, $periodo)
 		return $content;
 
 }
+
+//TESTE DE CACELAMENTO DE NOTA
+//echo cancelaNota($loginAppp, $passwordApp, "1", "Motivo do cancelamento");
+
+function cancelaNota($loginAppp, $passwordApp, $numeroNota, $motivo)
+{
+
+		$login = 'usumobdesenv';
+		$password = 'passdesenv123';
+		
+		//ESTA URL NÃO ESTÁ DISPONÍVEL
+		$loginUrl = 'http://usve79048.serverprofi24.com/eiss/webservice/ws_cancelanota.php';
+
+		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_URL, $loginUrl);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, 'login='.$login.'&senha='.$password.'&loginApp='.$loginAppp.'&senhaApp='
+			.$passwordApp .'&numero='.$numeroNota. '&motivo='.$motivo);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+		$content = curl_exec($ch);
+
+		curl_close($ch);
+
+		return $content;
+
+}
+
 ?>
